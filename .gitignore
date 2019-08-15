@@ -1,0 +1,7 @@
+# ---> Java
+*.class
+.idea
+.idea/workspace.xml
+target/**
+
+
