@@ -18,8 +18,8 @@ public class QoS4SendDaemon
 	private static QoS4SendDaemon instance = null;
 		
 	public final static int CHECH_INTERVAL = 5000;
-	public final static int MESSAGES_JUST$NOW_TIME = 3 * 1000;
-	public final static int QOS_TRY_COUNT = 2;
+	public final static int MESSAGES_JUST$NOW_TIME = 1 * 1000;
+	public final static int QOS_TRY_COUNT = 1;
 	
 	private ConcurrentHashMap<String, Protocal> sentMessages = new ConcurrentHashMap<String, Protocal>();
 	private ConcurrentHashMap<String, Long> sendMessagesTimestamp = new ConcurrentHashMap<String, Long>();

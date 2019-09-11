@@ -1,9 +1,9 @@
 package com.dy;
 
-import com.dy.javaclient.conf.ConfigEntity;
 import  com.dy.zserver.ServerLauncher;
 import  com.dy.zserver.qos.QoS4ReciveDaemonC2S;
 import  com.dy.zserver.qos.QoS4SendDaemonS2C;
+import com.dy.zserver.utils.MongoUtil;
 import com.dy.zserver.utils.ServerToolKits;
 
 import java.io.IOException;
@@ -28,17 +28,14 @@ public class ServerLauncherImpl extends ServerLauncher
 		//"5418023dfd98c579b6001741";
 		// 设置MobileIMSDK服务端的网络监听端口
 		ServerLauncherImpl.PORT = 10901;
-
 		//10901
-
 		// 开/关Demog日志的输出
 		QoS4SendDaemonS2C.getInstance().setDebugable(true);
 		QoS4ReciveDaemonC2S.getInstance().setDebugable(true);
 		ServerLauncher.debug = true;
-		
+		//ServerLauncher.debug = false;
 		// TODO 与客户端协商一致的心跳敏感模式设置
-		ServerToolKits.setSenseMode(ServerToolKits.SenseMode.MODE_120S);
-
+		ServerToolKits.setSenseMode(ServerToolKits.SenseMode.MODE_10S);
 		// 关闭与Web端的消息互通桥接器（其实SDK中默认就是false）
 		ServerLauncher.bridgeEnabled = false;
 		// TODO 跨服桥接器MQ的URI（本参数只在ServerLauncher.bridgeEnabled为true时有意义）
@@ -64,12 +61,12 @@ public class ServerLauncherImpl extends ServerLauncher
 	
     public static void main(String[] args) throws Exception
     {
-    	// 实例化后记得startup哦，单独startup()的目的是让调用者可以延迟决定何时真正启动IM服务
+		MongoUtil.getConnect();
+		// 实例化后记得startup哦，单独startup()的目的是让调用者可以延迟决定何时真正启动IM服务
     	final ServerLauncherImpl sli = new ServerLauncherImpl();
-    	
+		System.out.println("服务启动完成....................");
     	// 启动MobileIMSDK服务端的Demo
     	sli.startup();
-    	
     	// 加一个钩子，确保在JVM退出时释放netty的资源
     	Runtime.getRuntime().addShutdownHook(new Thread() {
     		@Override

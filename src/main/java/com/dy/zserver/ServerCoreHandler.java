@@ -76,9 +76,9 @@ public class ServerCoreHandler
     	Protocal pFromClient = ServerToolKits.fromIOBuffer(bytebuf);
 
     	String remoteAddress = ServerToolKits.clientInfoToString(session);
-//    	logger.info("---------------------------------------------------------");
-//    	logger.info("[IMCORE-netty] << 收到客户端"+remoteAddress+"的消息:::"+pFromClient.toGsonString());
-
+    	//System.out.println("---------------------------------------------------------+++");
+    	//System.out.println("[IMCORE-netty] << 收到客户端"+remoteAddress+"的消息:::"+pFromClient.toGsonString());
+		//System.out.println("---------------------------------------------------------+++"+pFromClient.getType());
     	switch(pFromClient.getType())
     	{
 	    	case ProtocalType.C.FROM_CLIENT_TYPE_OF_RECIVED:
@@ -147,6 +147,8 @@ public class ServerCoreHandler
 	    		LocalSendHelper.sendData(session, pFromClient, null);
 	    		break;
 	    	}
+
+
 	    	default:
 	    	{
 	    		logger.warn("[IMCORE-netty]【注意】收到的客户端"+remoteAddress+"消息类型："+pFromClient.getType()+"，但目前该类型服务端不支持解析和处理！");
@@ -215,4 +217,5 @@ public class ServerCoreHandler
 	{
 		return bridgeProcessor;
 	}
+
 }

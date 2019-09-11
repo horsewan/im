@@ -32,25 +32,25 @@ public class MBUDPChannel extends AbstractChannel
 		this.remote = remote;
 	}
 
-	//@Override
+	@Override
 	public ChannelMetadata metadata()
 	{
 		return metadata;
 	}
 
-	//@Override
+	@Override
 	public ChannelConfig config()
 	{
 		return config;
 	}
 
-	//@Override
+	@Override
 	public boolean isActive()
 	{
 		return open;
 	}
 
-	//@Override
+	@Override
 	public boolean isOpen() 
 	{
 		return isActive();
@@ -181,7 +181,7 @@ public class MBUDPChannel extends AbstractChannel
 
 	private class UdpChannelUnsafe extends AbstractUnsafe 
 	{
-		//@Override
+		@Override
 		public void connect(SocketAddress addr1, SocketAddress addr2, ChannelPromise pr)
 		{
 			throw new UnsupportedOperationException();
